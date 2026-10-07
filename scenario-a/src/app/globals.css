@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+
+  --color-paper: #f6f4ef;
+  --color-surface: #ffffff;
+  --color-ink: #0f1b2d;
+  --color-ink-soft: #2b3a4f;
+  --color-muted: #5f6b7a;
+  --color-faint: #8a94a1;
+  --color-hairline: #e3dfd6;
+  --color-hairline-strong: #cfc9bc;
+  --color-navy: #12284a;
+  --color-navy-deep: #0b1a33;
+  --color-brass: #a8834a;
+  --color-brass-soft: #f3ece0;
+
+  --color-rag-green: #1e6b46;
+  --color-rag-green-bg: #e6f2eb;
+  --color-rag-amber: #9a6512;
+  --color-rag-amber-bg: #fbf0dc;
+  --color-rag-red: #a6261b;
+  --color-rag-red-bg: #fbe8e5;
+
+  --shadow-card: 0 1px 0 rgb(15 27 45 / 0.04), 0 1px 3px rgb(15 27 45 / 0.06);
+  --shadow-raised: 0 1px 0 rgb(15 27 45 / 0.04), 0 12px 32px -12px rgb(15 27 45 / 0.18);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    @apply bg-navy text-white;
+  }
+
+  :focus-visible {
+    @apply outline-navy outline-2 outline-offset-2;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-muted text-[11px] font-semibold tracking-[0.14em] uppercase;
+  }
+
+  .card {
+    @apply border-hairline bg-surface rounded-xl border shadow-(--shadow-card);
+  }
+
+  .field {
+    @apply border-hairline-strong bg-surface text-ink placeholder:text-faint hover:border-ink-soft/40 focus:border-navy focus:ring-navy/10 aria-invalid:border-rag-red aria-invalid:focus:ring-rag-red/10 block w-full rounded-lg border px-3.5 py-2.5 text-[15px] transition-colors focus:ring-4 focus:outline-none;
+  }
+
+  .btn-primary {
+    @apply bg-navy hover:bg-navy-deep inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white shadow-(--shadow-card) transition disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+}
